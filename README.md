@@ -2,7 +2,7 @@
 Official codes for paper "Disentangled Representation Learning for Robust Brainprint Recognition"
 
 ## Contributions
-![Network Architecture](/\figs\model.png)
+![Network Architecture]([/\figs\model.png](https://github.com/xbrainnet/ADN/blob/main/figs/model.png?raw=true))
 
 - Propose a generalized feature disentanglement framework for the adaptive extraction of intrinsic identity-related discriminative representation against bias representation
 - Develop a novel spatial-temporal attention module to capture the spatial-temporal patterns within EEG signals, and further present a correlation-driven loss to preliminarily disentangle the entangled identity-bias factors. Then, the disentanglement is further improved by complementary constraint and adversarial training.
