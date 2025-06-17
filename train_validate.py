@@ -116,12 +116,6 @@ def train(model_q, model_k, optimizer, scheduler, criterion,
                 y_true.extend(label.cpu().numpy())
 
             valid_acc, valid_f1 = Metrics(y_true, pre)
-            if valid_acc > best_acc:
-                best_acc = valid_acc
-                f1 = valid_f1
-                torch.save(model_q[0].state_dict(), 'checkpoint/Fold_' + str(fold) + '_best_Ei.pth')
-                torch.save(model_q[1].state_dict(), 'checkpoint/Fold_' + str(fold) + '_best_Eb.pth')
-                torch.save(model_q[2].state_dict(), 'checkpoint/Fold_' + str(fold) + '_best_Ci.pth')
 
             train_epoch_loss_Ei = train_epoch_loss_Ei / len(train_loader)
             train_epoch_loss_Eb = train_epoch_loss_Eb / len(train_loader)
@@ -144,4 +138,4 @@ def train(model_q, model_k, optimizer, scheduler, criterion,
         print('valid_loss =', '{:.5f}'.format(valid_epoch_loss), end=" ")
         print('valid_acc =', '{:.4f}'.format(valid_acc))
     
-    return best_acc, f1, train_acces, train_losses_Ei, train_losses_Eb, train_losses_Cb, valid_acces, valid_losses
+    return train_acces, train_losses_Ei, train_losses_Eb, train_losses_Cb, valid_acces, valid_losses
