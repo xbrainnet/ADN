@@ -93,16 +93,6 @@ if __name__ == '__main__':
         scheduler_BiasCls = torch.optim.lr_scheduler.ExponentialLR(optimizer_BiasCls, gamma=0.99)
         scheduler = [scheduler_IdentityEnc, scheduler_BiasEnc, scheduler_BiasCls]
 
-        acc, f1, train_acces, train_losses_Ei, train_losses_Eb, train_losses_Cb, valid_acces, valid_losses = train  (model_q, model_k, optimizer, scheduler, criterion, train_loader, val_loader, device, args.epochs, fold, args.alpha, args.beta)
-
-        predict_acc.append(acc)
-        predict_f1.append(f1)
-
-        print('Best of Fold {}: acc: {}, f1: {}'.format(fold, acc, f1))
+        train_acces, train_losses_Ei, train_losses_Eb, train_losses_Cb, valid_acces, valid_losses = train(model_q, model_k, optimizer, scheduler, criterion, train_loader, val_loader, device, args.epochs, fold, args.alpha, args.beta)
 
         fold += 1
-    
-    print('Accuracy: {}'.format(sum(predict_acc) / K))
-    print('F1: {}'.format(sum(predict_f1) / K))
-    print(statistics.stdev(predict_acc))
-    print(statistics.stdev(predict_f1))
